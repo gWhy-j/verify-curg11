@@ -9,6 +9,7 @@ import Image from "next/image";
 function ReclaimDemo() {
   // State to store the verification request URL
   const [requestUrl, setRequestUrl] = useState("");
+  /* eslint-disable */
   const [proofs, setProofs] = useState<any>(null);
 
   const getVerificationReq = async () => {
