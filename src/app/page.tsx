@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import QRCode from "react-qr-code";
-import { ReclaimProofRequest } from "@reclaimprotocol/js-sdk";
+import { ReclaimProofRequest, verifyProof, Proof } from "@reclaimprotocol/js-sdk";
 import { NextUIProvider } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
@@ -26,16 +26,18 @@ function ReclaimDemo() {
     // Generate the verification request URL
     const requestUrl = await reclaimProofRequest.getRequestUrl();
 
-    console.log("Request URL:", requestUrl);
-
     setRequestUrl(requestUrl);
 
     // Start listening for proof submissions
     await reclaimProofRequest.startSession({
       // Called when the user successfully completes the verification
-      onSuccess: (proofs) => {
-        console.log("Verification success", proofs);
+      onSuccess: async (proofs) => {
         setProofs(proofs);
+
+        if (typeof proofs !== "string") {
+          const isVerified = await verifyProof(proofs as Proof);
+          console.log({ isVerified });
+        }
 
         // Add your success logic here, such as:
         // - Updating UI to show verification success
@@ -45,7 +47,6 @@ function ReclaimDemo() {
       // Called if there's an error during verification
       onError: (error) => {
         console.error("Verification failed", error);
-
         // Add your error handling logic here, such as:
         // - Showing error message to user
         // - Resetting verification state
