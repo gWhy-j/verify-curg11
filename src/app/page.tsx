@@ -18,7 +18,7 @@ function ReclaimDemo() {
 
     const APP_ID = process.env.NEXT_PUBLIC_RECLAIM_APPLICATION_ID!;
     const APP_SECRET = process.env.NEXT_PUBLIC_RECLAIM_APPLICATION_SECRET!;
-    const PROVIDER_ID = "e4c62428-0791-4e21-9543-682430c4ebec";
+    const PROVIDER_ID = "21d0e197-99fc-4014-b72c-b4a02d5f3723";
 
     // Initialize the Reclaim SDK with your credentials
     const reclaimProofRequest = await ReclaimProofRequest.init(APP_ID, APP_SECRET, PROVIDER_ID);
