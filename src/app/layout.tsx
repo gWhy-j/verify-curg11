@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-
+import Providers from "./provider";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -14,10 +14,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Verify CURG 11th Gen",
-  description: "당신은 CURG 11기가 맞습니까?",
+  title: "Verify DreamPlus Gangnam",
+  description: "DreamPlus Gangnam",
   icons: {
-    icon: "/curg.png",
+    icon: "/a41.png",
   },
 };
 
@@ -28,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
